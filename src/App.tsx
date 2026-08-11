@@ -1,5 +1,6 @@
 import { Navbar } from './components/Navbar'
 import { Hero } from './sections/Hero'
+import { About } from './sections/About'
 import { Projects } from './sections/Projects'
 import './App.css'
 
@@ -14,6 +15,7 @@ function App() {
 
       <main id="main-content">
         <Hero />
+        <About />
         <Projects />
       </main>
     </div>
