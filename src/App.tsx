@@ -1,5 +1,6 @@
 import { Navbar } from './components/Navbar'
 import { Hero } from './sections/Hero'
+import { Projects } from './sections/Projects'
 import './App.css'
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
 
       <main id="main-content">
         <Hero />
+        <Projects />
       </main>
     </div>
   )
