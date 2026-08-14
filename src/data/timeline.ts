@@ -17,6 +17,21 @@ export type TimelineItem = {
 
 export const timelineItems: TimelineItem[] = [
   {
+    id: 'sekolah-menengah-akhir',
+    category: 'Education',
+    title: 'Jurusan Bahasa',
+    organization: 'SMAK Sang Timur Yogyakarta',
+    period: '2020 - 2023',
+    location: 'Indonesia',
+    summary:
+      'Studying the structure of foreign languages, literature, and social and cultural sciences such as anthropology to understand the customs and ways of life of people in various parts of the world.',
+    highlights: [
+      'Studied English and Japanese languages, literature, and cultural studies.',
+      'Served as MPK and Deputy MPK, contributing to student governance and extracurricular activities.',
+    ],
+    published: true,
+  },
+  {
     id: 'university',
     category: 'Education',
     title: 'Information Systems Student',
@@ -24,10 +39,38 @@ export const timelineItems: TimelineItem[] = [
     period: '2023 - Present',
     location: 'Indonesia',
     summary:
-      'Final-year student focusing on software engineering and full-stack web development.',
+      'Studied Information Systems with a focus on system analysis, software development, databases, business processes, and IT project management.',
     highlights: [
-      'Tuliskan mata kuliah atau bidang yang paling relevan.',
-      'Tuliskan proyek akhir, organisasi, atau pencapaian yang relevan.',
+      'Applied system analysis and software development concepts through academic and independent projects.',
+      'Built KidsEducation with Kotlin and a port management application with CodeIgniter 3.',
+      'Built KreasiKan, an AI-powered SaaS platform for content creation using Next.js.',
+    ],
+    published: true,
+  },
+  {
+    id: 'juara-3-gemasi-kategori-pemrograman-2025',
+    category: 'Certification',
+    title: 'Lomba GEMASI',
+    organization: 'GEMASI (Gelar Karya Mahasiswa Sistem Informasi)',
+    period: '21 Januari 2025',
+    summary:
+      'Solve 10 programming logic problems in 90 minutes, demonstrating proficiency in algorithms and problem-solving.',
+    highlights: [
+      'Using the C++ programming language',
+    ],
+    published: true,
+  },
+  {
+    id: 'juara-2-arcadia-award-kategori-bisnis-digital-dan-fintech-2026',
+    category: 'Certification',
+    title: 'Lomba ARCADIA Award 2026',
+    organization: 'Fakultas Ilmu Komputer Universitas Amikom Yogyakarta',
+    period: '10 Februari 2026',
+    summary:
+      'Developing Kreasikan, a SaaS-based application that leverages AI technology to automate the content production process for SMEs and content creators in Indonesia.',
+    highlights: [
+      'Built an AI-powered SaaS platform for automated content creation.',
+      'Developed AI content generation, workflow automation, and project management features.',
     ],
     published: true,
   },
@@ -40,7 +83,7 @@ export const timelineItems: TimelineItem[] = [
     summary:
       'Completed an AI engineering program culminating in the WealthVision AI capstone project.',
     highlights: [
-      'Built an AI-powered financial application.',
+      'Built WealthVision, an AI-powered financial application.',
       'Integrated AI streaming, backend APIs, and PostgreSQL.',
     ],
     published: true,

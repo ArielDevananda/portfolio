@@ -50,7 +50,7 @@ export function Contact() {
                 rel="noreferrer"
               >
                 Connect on LinkedIn
-                <span aria-hidden="true">&nearr;</span>
+                <span aria-hidden="true">↗</span>
               </a>
             </div>
           </div>
@@ -73,7 +73,7 @@ export function Contact() {
                   rel="noreferrer"
                 >
                   View profile
-                  <span aria-hidden="true">&nearr;</span>
+                  <span aria-hidden="true">↗</span>
                 </a>
               </li>
             ))}

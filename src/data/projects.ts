@@ -32,6 +32,7 @@ export const projects: Project[] = [
       'PostgreSQL',
       'Git',
     ],
+    imagePath: '/images/projects/wealthvision-ai.webp',
     featured: true,
     published: true,
   },
