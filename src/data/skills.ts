@@ -8,44 +8,46 @@ export type SkillGroup = {
 
 export const skillGroups: SkillGroup[] = [
   {
-    id: 'frontend',
+    id: 'full-stack',
     number: '01',
-    title: 'Frontend',
+    title: 'Full-Stack Development',
     description:
-      'Building responsive, accessible, and maintainable user interfaces.',
+      'Building complete web applications from responsive interfaces to secure backend services.',
     skills: [
-      'Next.js',
+      'PHP',
       'React',
       'TypeScript',
       'JavaScript',
       'Tailwind CSS',
-      'Responsive Design',
+      'Flask',
+      'Laravel',
+      'REST APIs',
     ],
   },
   {
-    id: 'backend',
+    id: 'ai-engineering',
     number: '02',
-    title: 'Backend',
+    title: 'AI Engineering & Integration',
     description:
-      'Designing APIs, application logic, authentication, and integrations.',
+      'Integrating generative AI into reliable, responsive, and user-focused applications.',
     skills: [
       'Python',
-      'Flask',
-      'REST APIs',
-      'Authentication',
-      'Server-Sent Events',
-      'AI Integration',
+      'Generative AI',
+      'LLM Integration',
+      'RAG',
+      'Prompt Engineering',
+      'Fallback Handling',
     ],
   },
   {
     id: 'data',
     number: '03',
-    title: 'Data',
+    title: 'Data & Databases',
     description:
-      'Structuring and optimizing relational data for reliable applications.',
+      'Designing and optimizing relational data for reliable applications.',
     skills: [
       'PostgreSQL',
-      'SQL',
+      'MySQL',
       'Relational Schema',
       'Query Optimization',
       'Connection Pooling',
@@ -54,9 +56,13 @@ export const skillGroups: SkillGroup[] = [
   {
     id: 'tools',
     number: '04',
-    title: 'Tools & Workflow',
+    title: 'Tools & Delivery',
     description:
-      'Maintaining code quality and an organized development workflow.',
-    skills: ['Git', 'GitHub', 'Vite', 'ESLint', 'Technical Documentation'],
+      'Maintaining code quality and delivering applications to production.',
+    skills: [
+      'Git',
+      'GitHub',
+      'Figma',
+    ],
   },
 ]

@@ -1,24 +1,53 @@
+import { useEffect, useState } from 'react'
 import { profile } from '../data/portfolio'
 
-const stackLayers = [
-  {
-    number: '01',
-    title: 'Frontend',
-    description: 'Responsive interfaces built with React and TypeScript.',
-  },
-  {
-    number: '02',
-    title: 'Backend',
-    description: 'APIs, authentication, and reliable application logic.',
-  },
-  {
-    number: '03',
-    title: 'Data & Deployment',
-    description: 'Database design and applications ready for production.',
-  },
-] as const
+const heroRoles = ['Full-Stack Developer', 'AI Engineer'] as const
+
+const TYPING_DELAY = 85
+const DELETING_DELAY = 45
+const ROLE_PAUSE = 1500
+const ROLE_CHANGE_DELAY = 300
 
 export function Hero() {
+  const [roleIndex, setRoleIndex] = useState(0)
+  const [characterCount, setCharacterCount] = useState(0)
+  const [isDeleting, setIsDeleting] = useState(false)
+
+  const currentRole = heroRoles[roleIndex]
+  const displayedRole = currentRole.slice(0, characterCount)
+
+  useEffect(() => {
+    let delay = isDeleting ? DELETING_DELAY : TYPING_DELAY
+
+    if (!isDeleting && characterCount === currentRole.length) {
+      delay = ROLE_PAUSE
+    } else if (isDeleting && characterCount === 0) {
+      delay = ROLE_CHANGE_DELAY
+    }
+
+    const timeoutId = window.setTimeout(() => {
+      if (!isDeleting) {
+        if (characterCount < currentRole.length) {
+          setCharacterCount((current) => current + 1)
+          return
+        }
+
+        setIsDeleting(true)
+        return
+      }
+
+      if (characterCount > 0) {
+        setCharacterCount((current) => current - 1)
+        return
+      }
+
+      setIsDeleting(false)
+      setRoleIndex((current) => (current + 1) % heroRoles.length)
+    }, delay)
+
+    return () => window.clearTimeout(timeoutId)
+  }, [characterCount, currentRole, isDeleting])
+
   return (
     <section className="hero-section" aria-labelledby="hero-title">
       <div className="container hero-grid">
@@ -34,7 +63,13 @@ export function Hero() {
 
           <h1 className="hero-title" id="hero-title">
             <span>{profile.name}</span>
-            <strong>{profile.role}</strong>
+            <strong className="hero-role">
+              <span className="visually-hidden">{profile.role}</span>
+              <span className="hero-role-typing" aria-hidden="true">
+                {displayedRole}
+                <span className="typing-cursor" />
+              </span>
+            </strong>
           </h1>
 
           <p className="hero-introduction">{profile.introduction}</p>
@@ -52,44 +87,7 @@ export function Hero() {
               Contact me
             </a>
           </div>
-
-          <ul className="hero-meta" aria-label="Profile details">
-            <li>
-              <span>Based in</span>
-              <strong>{profile.location}</strong>
-            </li>
-
-            <li>
-              <span>Focus</span>
-              <strong>Full-stack products</strong>
-            </li>
-          </ul>
         </div>
-
-        <aside className="stack-card" aria-label="Full-stack capabilities">
-          <div className="stack-card-header">
-            <p>How I build</p>
-            <span>End to end</span>
-          </div>
-
-          <div className="stack-list">
-            {stackLayers.map((layer) => (
-              <article className="stack-layer" key={layer.number}>
-                <span className="stack-number">{layer.number}</span>
-
-                <div>
-                  <h2>{layer.title}</h2>
-                  <p>{layer.description}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-
-          <div className="stack-card-footer">
-            <span className="status-dot" aria-hidden="true" />
-            From interface to deployment
-          </div>
-        </aside>
       </div>
     </section>
   )

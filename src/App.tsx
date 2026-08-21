@@ -20,8 +20,8 @@ function App() {
       <main id="main-content">
         <Hero />
         <About />
-        <Skills />
         <Projects />
+        <Skills />
         <Experience />
         <Contact />
       </main>

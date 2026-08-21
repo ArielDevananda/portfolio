@@ -16,6 +16,12 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
       }`}
     >
       <div className="project-visual">
+        {project.featured && (
+          <span className="project-featured-badge">
+            Featured project
+          </span>
+        )}
+
         {project.imagePath ? (
           <img
             src={project.imagePath}
@@ -59,7 +65,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
               rel="noreferrer"
             >
               Source code
-              <span aria-hidden="true">&nearr;</span>
+              <span aria-hidden="true">{'\u2197'}</span>
             </a>
           )}
 
@@ -70,7 +76,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
               rel="noreferrer"
             >
               Live demo
-              <span aria-hidden="true">&nearr;</span>
+              <span aria-hidden="true">{'\u2197'}</span>
             </a>
           )}
 

@@ -18,16 +18,16 @@ export function Experience() {
       <div className="container">
         <header className="experience-header">
           <div>
-            <p className="eyebrow">Experience & education</p>
+            <p className="eyebrow">Experience, education & achievements</p>
 
             <h2 className="section-title" id="experience-title">
-              Learning, building, and growing through real work.
+              Building expertise through study, projects, and applied work.
             </h2>
           </div>
 
           <p className="section-description">
-            Education, training, and practical experiences that shaped my
-            approach to building software.
+            An AI engineering internship, education, and achievements that
+            shaped my approach to building full-stack and intelligent products.
           </p>
         </header>
 

@@ -1,30 +1,28 @@
 import { profile } from '../data/portfolio'
-
-const principles = [
-  {
-    number: '01',
-    title: 'Accessible interfaces',
-    description:
-      'Interfaces should remain clear, responsive, and usable for different users and devices.',
-  },
-  {
-    number: '02',
-    title: 'Reliable backend',
-    description:
-      'Application logic, APIs, and data should behave predictably and handle failure safely.',
-  },
-  {
-    number: '03',
-    title: 'Maintainable delivery',
-    description:
-      'Readable code, documentation, and version control make products easier to improve.',
-  },
-] as const
+import { projects } from '../data/projects'
 
 export function About() {
   const availability = profile.availableForWork
     ? 'Open to opportunities'
     : 'Currently unavailable'
+  const yearsExperience = Math.max(
+    1,
+    new Date().getFullYear() - profile.experienceStartYear,
+  )
+  const completedProjects = projects.filter((project) => project.published).length
+
+  const statistics = [
+    {
+      value: `${yearsExperience}+`,
+      label: 'Years Experience',
+      description: `Learning and building since ${profile.experienceStartYear}`,
+    },
+    {
+      value: `${completedProjects}`,
+      label: 'Projects Completed',
+      description: 'Published projects and case studies',
+    },
+  ] as const
 
   return (
     <section
@@ -64,26 +62,23 @@ export function About() {
           </dl>
         </div>
 
-        <aside className="principles-panel" aria-label="Development principles">
-          <header className="principles-header">
-            <p>Development principles</p>
-            <span>What I value</span>
+        <aside className="about-stats-panel" aria-label="Professional statistics">
+          <header className="about-stats-header">
+            <p>At a glance</p>
+            <span>Current profile</span>
           </header>
 
-          <ol className="principles-list">
-            {principles.map((principle) => (
-              <li key={principle.number}>
-                <span className="principle-number" aria-hidden="true">
-                  {principle.number}
-                </span>
-
-                <div>
-                  <h3>{principle.title}</h3>
-                  <p>{principle.description}</p>
-                </div>
-              </li>
+          <dl className="about-stats-list">
+            {statistics.map((statistic) => (
+              <div key={statistic.label}>
+                <dt>{statistic.label}</dt>
+                <dd className="about-stat-value">{statistic.value}</dd>
+                <dd className="about-stat-description">
+                  {statistic.description}
+                </dd>
+              </div>
             ))}
-          </ol>
+          </dl>
         </aside>
       </div>
     </section>

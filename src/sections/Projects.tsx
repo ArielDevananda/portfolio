@@ -1,10 +1,22 @@
+import { useState } from 'react'
 import { ProjectCard } from '../components/ProjectCard'
 import { projects } from '../data/projects'
 
+const INITIAL_PROJECT_COUNT = 5
+
 export function Projects() {
+  const [showAllProjects, setShowAllProjects] = useState(false)
+
   const publishedProjects = projects.filter(
     (project) => project.published,
   )
+
+  const visibleProjects = showAllProjects
+    ? publishedProjects
+    : publishedProjects.slice(0, INITIAL_PROJECT_COUNT)
+
+  const hasMoreProjects =
+    publishedProjects.length > INITIAL_PROJECT_COUNT
 
   if (publishedProjects.length === 0) {
     return null
@@ -31,8 +43,8 @@ export function Projects() {
           </p>
         </header>
 
-        <div className="projects-grid">
-          {publishedProjects.map((project, index) => (
+        <div className="projects-grid" id="projects-grid">
+          {visibleProjects.map((project, index) => (
             <ProjectCard
               key={project.id}
               project={project}
@@ -40,6 +52,24 @@ export function Projects() {
             />
           ))}
         </div>
+
+        {hasMoreProjects && (
+          <div className="projects-actions">
+            <button
+              className="button button-secondary"
+              type="button"
+              aria-expanded={showAllProjects}
+              aria-controls="projects-grid"
+              onClick={() =>
+                setShowAllProjects((current) => !current)
+              }
+            >
+              {showAllProjects
+                ? 'Show fewer projects'
+                : `View all projects (${publishedProjects.length})`}
+            </button>
+          </div>
+        )}
       </div>
     </section>
   )

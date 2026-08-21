@@ -1,19 +1,48 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { profile } from '../data/portfolio'
+
+type Theme = 'dark' | 'light'
+
+const THEME_TRANSITION_DURATION = 350
 
 const navigationItems = [
   { label: 'About', href: '#about' },
-  { label: 'Skills', href: '#skills' },
   { label: 'Projects', href: '#projects' },
-  { label: 'Experience', href: '#experience' },
+  { label: 'Skills', href: '#skills' },
+  { label: 'Background', href: '#experience' },
   { label: 'Contact', href: '#contact' },
 ] as const
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const themeTransitionTimeout = useRef<number | null>(null)
+  const [theme, setTheme] = useState<Theme>(() => {
+    try {
+      return window.localStorage.getItem('portfolio-theme') === 'light'
+        ? 'light'
+        : 'dark'
+    } catch {
+      return 'dark'
+    }
+  })
 
   function closeMenu() {
     setIsMenuOpen(false)
+  }
+
+  function toggleTheme() {
+    document.documentElement.classList.add('theme-transition')
+
+    if (themeTransitionTimeout.current !== null) {
+      window.clearTimeout(themeTransitionTimeout.current)
+    }
+
+    setTheme((current) => (current === 'dark' ? 'light' : 'dark'))
+
+    themeTransitionTimeout.current = window.setTimeout(() => {
+      document.documentElement.classList.remove('theme-transition')
+      themeTransitionTimeout.current = null
+    }, THEME_TRANSITION_DURATION)
   }
 
   useEffect(() => {
@@ -30,6 +59,36 @@ export function Navbar() {
     }
   }, [])
 
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme
+    document.documentElement.style.colorScheme = theme
+
+    const themeColor = document.querySelector<HTMLMetaElement>(
+      'meta[name="theme-color"]',
+    )
+
+    themeColor?.setAttribute(
+      'content',
+      theme === 'dark' ? '#090b0f' : '#f5f7fb',
+    )
+
+    try {
+      window.localStorage.setItem('portfolio-theme', theme)
+    } catch {
+      // The selected theme still works when browser storage is unavailable.
+    }
+  }, [theme])
+
+  useEffect(() => {
+    return () => {
+      if (themeTransitionTimeout.current !== null) {
+        window.clearTimeout(themeTransitionTimeout.current)
+      }
+
+      document.documentElement.classList.remove('theme-transition')
+    }
+  }, [])
+
   return (
     <header className="site-header">
       <div className="container navbar">
@@ -39,9 +98,6 @@ export function Navbar() {
           aria-label={`${profile.name} home`}
           onClick={closeMenu}
         >
-          <span className="brand-mark" aria-hidden="true">
-            AD
-          </span>
           <span className="brand-name">{profile.name}</span>
         </a>
 
@@ -67,14 +123,24 @@ export function Navbar() {
           </ul>
         </nav>
 
-        <a
-          className="resume-link"
-          href={profile.cvPath}
-          target="_blank"
-          rel="noreferrer"
+        <button
+          className="theme-toggle"
+          type="button"
+          aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
+          title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
+          onClick={toggleTheme}
         >
-          Resume
-        </a>
+          {theme === 'dark' ? (
+            <svg aria-hidden="true" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="4" />
+              <path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42" />
+            </svg>
+          ) : (
+            <svg aria-hidden="true" viewBox="0 0 24 24">
+              <path d="M20.5 14.3A8.5 8.5 0 0 1 9.7 3.5 8.5 8.5 0 1 0 20.5 14.3Z" />
+            </svg>
+          )}
+        </button>
 
         <button
           className={`menu-toggle ${

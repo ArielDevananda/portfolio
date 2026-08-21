@@ -13,13 +13,14 @@ export function Skills() {
             <p className="eyebrow">Technical skills</p>
 
             <h2 className="section-title" id="skills-title">
-              A practical stack for complete web products.
+              Full-stack engineering with practical AI integration.
             </h2>
           </div>
 
           <p className="section-description">
-            Technologies and practices I have used to build interfaces,
-            backend services, databases, and production-ready applications.
+            Technologies and practices I use to build web applications,
+            integrate intelligent features, manage data, and deliver
+            production-ready products.
           </p>
         </header>
 

@@ -13,7 +13,7 @@ const socialLinks = [
 
 export function Contact() {
   const availabilityMessage = profile.availableForWork
-    ? 'I am currently open to full-stack developer opportunities, collaborative projects, and conversations about building useful software.'
+    ? 'I am currently open to full-stack development, AI engineering, and applied AI opportunities, as well as collaborative projects focused on building useful software.'
     : 'I am not currently looking for a new role, but you are still welcome to get in touch.'
 
   return (
@@ -50,7 +50,7 @@ export function Contact() {
                 rel="noreferrer"
               >
                 Connect on LinkedIn
-                <span aria-hidden="true">↗</span>
+                <span aria-hidden="true">{'\u2197'}</span>
               </a>
             </div>
           </div>
@@ -73,7 +73,7 @@ export function Contact() {
                   rel="noreferrer"
                 >
                   View profile
-                  <span aria-hidden="true">↗</span>
+                  <span aria-hidden="true">{'\u2197'}</span>
                 </a>
               </li>
             ))}

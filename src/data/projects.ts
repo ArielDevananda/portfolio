@@ -1,4 +1,9 @@
-export type ProjectCategory = 'Full Stack' | 'Frontend' | 'Backend'
+export type ProjectCategory =
+  | 'Full-Stack + AI'
+  | 'Full-Stack'
+  | 'AI Engineering'
+  | 'Frontend'
+  | 'Backend'
 
 export type Project = {
   id: string
@@ -18,28 +23,30 @@ export const projects: Project[] = [
   {
     id: 'wealthvision-ai',
     title: 'WealthVision AI',
-    category: 'Full Stack',
+    category: 'Full-Stack + AI',
     description:
-      'A personal financial assistant powered by Generative AI that helps users manage and understand their finances. Built as the capstone project for an AI Engineer course.',
+      'A personal financial assistant powered by Generative AI that helps users manage and understand their finances. Built as the capstone project during an AI Engineer internship.',
     contribution:
       'Led the full-stack implementation: built seven responsive finance pages, bilingual UI, CSV import/export, and PDF reports; designed Flask REST APIs with authentication, AI streaming, fallback handling, and budget notifications; and optimized a six-table PostgreSQL database.',
     technologies: [
       'Next.js 16',
-      'React 19',
       'TypeScript',
       'Tailwind CSS 4',
+      'Python',
       'Flask',
       'PostgreSQL',
-      'Git',
+      'Generative AI',
+      'LLM Integration',
     ],
     imagePath: '/images/projects/wealthvision-ai.webp',
+    githubUrl: 'https://github.com/ArielDevananda/Capstone-Project-AI-Finance-App',
     featured: true,
     published: true,
   },
   {
     id: 'habit-tracker',
     title: 'Habit Tracker',
-    category: 'Full Stack',
+    category: 'Full-Stack',
     description:
       'Jelaskan tujuan aplikasi dan manfaat utamanya bagi pengguna.',
     contribution:
