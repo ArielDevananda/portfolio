@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { ProjectCard } from '../components/ProjectCard'
 import { projects } from '../data/projects'
 
-const INITIAL_PROJECT_COUNT = 5
+const INITIAL_PROJECT_COUNT = 4
 
 export function Projects() {
   const [showAllProjects, setShowAllProjects] = useState(false)
@@ -44,11 +44,10 @@ export function Projects() {
         </header>
 
         <div className="projects-grid" id="projects-grid">
-          {visibleProjects.map((project, index) => (
+          {visibleProjects.map((project) => (
             <ProjectCard
               key={project.id}
               project={project}
-              index={index}
             />
           ))}
         </div>

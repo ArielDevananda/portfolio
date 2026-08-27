@@ -2,26 +2,14 @@ import type { Project } from '../data/projects'
 
 type ProjectCardProps = {
   project: Project
-  index: number
 }
 
-export function ProjectCard({ project, index }: ProjectCardProps) {
-  const projectNumber = String(index + 1).padStart(2, '0')
-  const hasProjectLink = project.githubUrl || project.liveUrl
+export function ProjectCard({ project }: ProjectCardProps) {
+  const hasProjectLink = project.liveUrl || project.githubUrl
 
   return (
-    <article
-      className={`project-card ${
-        project.featured ? 'project-card-featured' : ''
-      }`}
-    >
+    <article className="project-card">
       <div className="project-visual">
-        {project.featured && (
-          <span className="project-featured-badge">
-            Featured project
-          </span>
-        )}
-
         {project.imagePath ? (
           <img
             src={project.imagePath}
@@ -29,27 +17,18 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
             loading="lazy"
           />
         ) : (
-          <div className="project-placeholder" aria-hidden="true">
-            <span>{project.category}</span>
-            <strong>{projectNumber}</strong>
-          </div>
+          <div
+            className="project-placeholder"
+            role="img"
+            aria-label={`${project.title} preview is not available yet`}
+          />
         )}
       </div>
 
       <div className="project-content">
-        <div className="project-heading">
-          <p className="project-category">{project.category}</p>
-          <span className="project-number">{projectNumber}</span>
-        </div>
-
         <h3>{project.title}</h3>
 
         <p className="project-description">{project.description}</p>
-
-        <div className="project-contribution">
-          <strong>My contribution</strong>
-          <p>{project.contribution}</p>
-        </div>
 
         <ul className="technology-list" aria-label="Technologies used">
           {project.technologies.map((technology) => (
@@ -57,35 +36,35 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
           ))}
         </ul>
 
-        <div className="project-links">
-          {project.githubUrl && (
-            <a
-              href={project.githubUrl}
-              target="_blank"
-              rel="noreferrer"
-            >
-              Source code
-              <span aria-hidden="true">{'\u2197'}</span>
-            </a>
-          )}
+        {hasProjectLink && (
+          <div className="project-links">
+            {project.liveUrl && (
+              <a
+                className="project-link project-link-primary"
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Open ${project.title} live demo in a new tab`}
+              >
+                Live Demo
+                <span aria-hidden="true">{'\u2197'}</span>
+              </a>
+            )}
 
-          {project.liveUrl && (
-            <a
-              href={project.liveUrl}
-              target="_blank"
-              rel="noreferrer"
-            >
-              Live demo
-              <span aria-hidden="true">{'\u2197'}</span>
-            </a>
-          )}
-
-          {!hasProjectLink && (
-            <span className="project-link-unavailable">
-              Case study coming soon
-            </span>
-          )}
-        </div>
+            {project.githubUrl && (
+              <a
+                className="project-link"
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Open ${project.title} source code in a new tab`}
+              >
+                Source Code
+                <span aria-hidden="true">{'\u2197'}</span>
+              </a>
+            )}
+          </div>
+        )}
       </div>
     </article>
   )

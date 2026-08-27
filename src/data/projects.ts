@@ -29,9 +29,9 @@ export const projects: Project[] = [
     contribution:
       'Led the full-stack implementation: built seven responsive finance pages, bilingual UI, CSV import/export, and PDF reports; designed Flask REST APIs with authentication, AI streaming, fallback handling, and budget notifications; and optimized a six-table PostgreSQL database.',
     technologies: [
-      'Next.js 16',
+      'Next.js',
       'TypeScript',
-      'Tailwind CSS 4',
+      'Tailwind',
       'Python',
       'Flask',
       'PostgreSQL',
@@ -53,18 +53,19 @@ export const projects: Project[] = [
       'Jelaskan tanggung jawab dan keputusan teknis yang Anda kerjakan.',
     technologies: ['React', 'JavaScript', 'Express', 'MySQL'],
     featured: false,
-    published: false,
+    published: true,
   },
   {
-    id: 'project-three',
-    title: 'Nama Proyek Ketiga',
+    id: 'edukids-learning-app',
+    title: 'EduKids Learning App',
     category: 'Frontend',
     description:
-      'Jelaskan pengalaman pengguna atau masalah antarmuka yang diselesaikan.',
+      'EduKids is an interactive Android learning application for children, featuring on-device machine learning for real-time object recognition, gamified educational activities, and progress tracking to create an engaging and child-friendly learning experience.',
     contribution:
       'Jelaskan bagian UI, integrasi API, accessibility, atau testing yang Anda kerjakan.',
-    technologies: ['React', 'TypeScript', 'CSS'],
-    featured: false,
-    published: false,
+    technologies: ['Kotlin', 'Mobile App'],
+    imagePath: '/images/projects/edukids.webp',
+    featured: true,
+    published: true,
   },
 ]

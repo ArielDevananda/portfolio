@@ -14,6 +14,7 @@ export type TimelineItem = {
   summary: string
   highlights: string[]
   published: boolean
+  certificateUrl?: string
 }
 
 export const timelineItems: TimelineItem[] = [
@@ -45,6 +46,8 @@ export const timelineItems: TimelineItem[] = [
       'Built WealthVision, an AI-powered financial application.',
       'Integrated AI streaming, backend APIs, and PostgreSQL.',
     ],
+    certificateUrl:
+      'https://drive.google.com/file/d/1bu3MU5RUXfUSTKKqgIC2C_DzyPslDwN3/view?usp=sharing',
     published: true,
   },
   {
@@ -59,6 +62,7 @@ export const timelineItems: TimelineItem[] = [
       'Built an AI-powered SaaS platform for automated content creation.',
       'Developed AI content generation, workflow automation, and project management features.',
     ],
+    certificateUrl: 'https://drive.google.com/file/d/1cqa9FmeSQBXoahozNIcHSif_QhTwSa1Q/view?usp=sharing',
     published: true,
   },
   {
@@ -72,6 +76,7 @@ export const timelineItems: TimelineItem[] = [
     highlights: [
       'Used C++ to solve the programming challenges.',
     ],
+    certificateUrl: 'https://drive.google.com/file/d/1fAXfzpC0vv1KwsKCxEfpXeEV0LoXfUqZ/view?usp=sharing',
     published: true,
   },
   {
@@ -87,7 +92,7 @@ export const timelineItems: TimelineItem[] = [
       'Studied English and Japanese languages, literature, and cultural studies.',
       'Served as MPK and Deputy MPK, contributing to student governance and extracurricular activities.',
     ],
-    published: true,
+    published: false,
   },
   {
     id: 'professional-experience',

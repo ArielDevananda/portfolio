@@ -68,6 +68,21 @@ export function Experience() {
                     ))}
                   </ul>
                 )}
+
+                {item.certificateUrl && (
+                  <div className="timeline-actions">
+                    <a
+                      className="certificate-link"
+                      href={item.certificateUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`View certificate for ${item.title} (opens in a new tab)`}
+                    >
+                      View certificate
+                      <span aria-hidden="true">{'↗'}</span>
+                    </a>
+                  </div>
+                )}
               </article>
             </li>
           ))}
