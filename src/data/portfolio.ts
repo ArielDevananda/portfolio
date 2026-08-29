@@ -24,7 +24,7 @@ export const profile: Profile = {
   location: 'Yogyakarta, Indonesia',
   email: 'arielruliyadi@gmail.com',
   githubUrl: 'https://github.com/ArielDevananda',
-  linkedinUrl: 'https://linkedin.com/in/arielruliyadi',
+  linkedinUrl: 'https://www.linkedin.com/in/ariel-devananda/',
   cvPath: '/cv-ariel-devananda.pdf',
   experienceStartYear: 2023,
   availableForWork: true,
