@@ -53,7 +53,7 @@ export const projects: Project[] = [
       'Jelaskan tanggung jawab dan keputusan teknis yang Anda kerjakan.',
     technologies: ['React', 'JavaScript', 'Express', 'MySQL'],
     featured: false,
-    published: true,
+    published: false,
   },
   {
     id: 'edukids-learning-app',
