@@ -1,83 +1,18 @@
+import { ArrowUpRight } from 'lucide-react'
 import { profile } from '../data/portfolio'
 
-const socialLinks = [
-  {
-    label: 'GitHub',
-    href: profile.githubUrl,
-  },
-  {
-    label: 'LinkedIn',
-    href: profile.linkedinUrl,
-  },
-] as const
-
 export function Contact() {
-  const availabilityMessage = profile.availableForWork
-    ? 'I am currently open to full-stack development, AI engineering, and applied AI opportunities, as well as collaborative projects focused on building useful software.'
-    : 'I am not currently looking for a new role, but you are still welcome to get in touch.'
-
   return (
-    <section
-      className="section contact-section"
-      id="contact"
-      aria-labelledby="contact-title"
-    >
-      <div className="container">
-        <div className="contact-panel">
-          <div className="contact-copy">
-            <p className="eyebrow">Get in touch</p>
-
-            <h2 className="section-title" id="contact-title">
-              Let&apos;s build something useful.
-            </h2>
-
-            <p className="section-description">
-              {availabilityMessage}
-            </p>
-
-            <div className="contact-actions">
-              <a
-                className="button button-primary"
-                href={`mailto:${profile.email}`}
-              >
-                Send an email
-              </a>
-
-              <a
-                className="button button-secondary"
-                href={profile.linkedinUrl}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Connect on LinkedIn
-                <span aria-hidden="true">{'\u2197'}</span>
-              </a>
-            </div>
+    <section className="section contact-section" id="contact" aria-labelledby="contact-title">
+      <div className="container editorial-grid">
+        <header><p className="eyebrow">04 / Contact</p><h2 className="section-title" id="contact-title">Let's talk.</h2></header>
+        <div className="contact-copy">
+          <p>Have a project in mind, or want to talk about full-stack development and AI? I'd love to hear from you.</p>
+          <a className="contact-email" href={`mailto:${profile.email}`}>{profile.email} <ArrowUpRight aria-hidden="true" size={18} /></a>
+          <div className="contact-socials">
+            <a className="text-link" href={profile.githubUrl} target="_blank" rel="noopener noreferrer">GitHub <ArrowUpRight aria-hidden="true" size={18} /></a>
+            <a className="text-link" href={profile.linkedinUrl} target="_blank" rel="noopener noreferrer">LinkedIn <ArrowUpRight aria-hidden="true" size={18} /></a>
           </div>
-
-          <ul className="contact-links">
-            <li>
-              <span>Email</span>
-              <a href={`mailto:${profile.email}`}>
-                {profile.email}
-              </a>
-            </li>
-
-            {socialLinks.map((link) => (
-              <li key={link.label}>
-                <span>{link.label}</span>
-
-                <a
-                  href={link.href}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  View profile
-                  <span aria-hidden="true">{'\u2197'}</span>
-                </a>
-              </li>
-            ))}
-          </ul>
         </div>
       </div>
     </section>

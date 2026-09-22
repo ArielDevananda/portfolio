@@ -1,92 +1,22 @@
-import { useEffect, useState } from 'react'
+import { ArrowUpRight, ArrowDown } from 'lucide-react'
 import { profile } from '../data/portfolio'
 
-const heroRoles = ['Full-Stack Developer', 'AI Engineer'] as const
-
-const TYPING_DELAY = 85
-const DELETING_DELAY = 45
-const ROLE_PAUSE = 1500
-const ROLE_CHANGE_DELAY = 300
-
 export function Hero() {
-  const [roleIndex, setRoleIndex] = useState(0)
-  const [characterCount, setCharacterCount] = useState(0)
-  const [isDeleting, setIsDeleting] = useState(false)
-
-  const currentRole = heroRoles[roleIndex]
-  const displayedRole = currentRole.slice(0, characterCount)
-
-  useEffect(() => {
-    let delay = isDeleting ? DELETING_DELAY : TYPING_DELAY
-
-    if (!isDeleting && characterCount === currentRole.length) {
-      delay = ROLE_PAUSE
-    } else if (isDeleting && characterCount === 0) {
-      delay = ROLE_CHANGE_DELAY
-    }
-
-    const timeoutId = window.setTimeout(() => {
-      if (!isDeleting) {
-        if (characterCount < currentRole.length) {
-          setCharacterCount((current) => current + 1)
-          return
-        }
-
-        setIsDeleting(true)
-        return
-      }
-
-      if (characterCount > 0) {
-        setCharacterCount((current) => current - 1)
-        return
-      }
-
-      setIsDeleting(false)
-      setRoleIndex((current) => (current + 1) % heroRoles.length)
-    }, delay)
-
-    return () => window.clearTimeout(timeoutId)
-  }, [characterCount, currentRole, isDeleting])
-
   return (
     <section className="hero-section" aria-labelledby="hero-title">
-      <div className="container hero-grid">
-        <div className="hero-copy">
-          {profile.availableForWork && (
-            <p className="availability">
-              <span className="status-dot" aria-hidden="true" />
-              Available for opportunities
-            </p>
-          )}
-
-          <p className="eyebrow">Hello, my name is</p>
-
-          <h1 className="hero-title" id="hero-title">
-            <span>{profile.name}</span>
-            <strong className="hero-role">
-              <span className="visually-hidden">{profile.role}</span>
-              <span className="hero-role-typing" aria-hidden="true">
-                {displayedRole}
-                <span className="typing-cursor" />
-              </span>
-            </strong>
-          </h1>
-
-          <p className="hero-introduction">{profile.introduction}</p>
-
-          <div className="hero-actions">
-            <a className="button button-primary" href="#projects">
-              View projects
-              <span aria-hidden="true">&darr;</span>
-            </a>
-
-            <a
-              className="button button-secondary"
-              href={`mailto:${profile.email}`}
-            >
-              Contact me
-            </a>
+      <div className="container">
+        <p className="eyebrow">Full-stack development & applied AI</p>
+        <h1 className="hero-title" id="hero-title">{profile.name}<span className="hero-period">.</span></h1>
+        <div className="hero-bottom">
+          <div>
+            <p className="hero-statement">I build web applications with AI, from the interface to the database.</p>
+            <p className="hero-introduction">An Information Systems student in Yogyakarta, Indonesia. My work brings together full-stack development and practical AI integration.</p>
+            <div className="hero-actions">
+              <a className="button button-primary" href="#projects">Explore my work <ArrowDown aria-hidden="true" size={18} /></a>
+              <a className="text-link" href={`mailto:${profile.email}`}>Get in touch <ArrowUpRight aria-hidden="true" size={18} /></a>
+            </div>
           </div>
+          <p className="hero-note">Based in<br /><span>{profile.location}</span></p>
         </div>
       </div>
     </section>

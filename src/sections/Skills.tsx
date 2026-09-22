@@ -2,48 +2,17 @@ import { skillGroups } from '../data/skills'
 
 export function Skills() {
   return (
-    <section
-      className="section skills-section"
-      id="skills"
-      aria-labelledby="skills-title"
-    >
-      <div className="container">
-        <header className="skills-header">
-          <div>
-            <p className="eyebrow">Technical skills</p>
-
-            <h2 className="section-title" id="skills-title">
-              Full-stack engineering with practical AI integration.
-            </h2>
-          </div>
-
-          <p className="section-description">
-            Technologies and practices I use to build web applications,
-            integrate intelligent features, manage data, and deliver
-            production-ready products.
-          </p>
+    <section className="skills-section" id="skills" aria-labelledby="skills-title">
+      <div className="container editorial-grid">
+        <header><p className="eyebrow">Tools & practice</p><h2 className="section-title" id="skills-title">What I work with.</h2>
+          <p>In WealthVision AI, I used Flask for APIs, integrated streaming AI responses, and optimized PostgreSQL data.</p>
         </header>
-
-        <div className="skills-grid">
+        <div>
           {skillGroups.map((group) => (
-            <article className="skill-group" key={group.id}>
-              <header className="skill-group-header">
-                <span className="skill-number" aria-hidden="true">
-                  {group.number}
-                </span>
-
-                <div>
-                  <h3>{group.title}</h3>
-                  <p>{group.description}</p>
-                </div>
-              </header>
-
-              <ul className="skill-list">
-                {group.skills.map((skill) => (
-                  <li key={skill}>{skill}</li>
-                ))}
-              </ul>
-            </article>
+            <div className="skill-group" key={group.id}>
+              <h3>{group.title}</h3>
+              <ul className="skill-list">{group.skills.map((skill) => <li key={skill}>{skill}</li>)}</ul>
+            </div>
           ))}
         </div>
       </div>

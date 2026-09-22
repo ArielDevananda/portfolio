@@ -1,45 +1,16 @@
 import { profile } from '../data/portfolio'
 
 export function About() {
-  const availability = profile.availableForWork
-    ? 'Open to opportunities'
-    : 'Currently unavailable'
-
   return (
-    <section
-      className="section about-section"
-      id="about"
-      aria-labelledby="about-title"
-    >
-      <div className="container about-grid">
+    <section className="section about-section" id="about" aria-labelledby="about-title">
+      <div className="container editorial-grid">
+        <header><p className="eyebrow">02 / About</p><h2 className="section-title" id="about-title">A little<br />about me.</h2></header>
         <div className="about-copy">
-          <p className="eyebrow">About me</p>
-
-          <h2 className="section-title" id="about-title">
-            Building complete products with purpose.
-          </h2>
-
-          <div className="about-text">
-            {profile.about.map((paragraph) => (
-              <p key={paragraph}>{paragraph}</p>
-            ))}
-          </div>
-
+          {profile.about.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
           <dl className="about-facts">
-            <div>
-              <dt>Location</dt>
-              <dd>{profile.location}</dd>
-            </div>
-
-            <div>
-              <dt>Role</dt>
-              <dd>{profile.role}</dd>
-            </div>
-
-            <div>
-              <dt>Status</dt>
-              <dd>{availability}</dd>
-            </div>
+            <div><dt>Based in</dt><dd>{profile.location}</dd></div>
+            <div><dt>Focus</dt><dd>{profile.role}</dd></div>
+            {profile.availableForWork && <div><dt>Currently</dt><dd>Open to opportunities</dd></div>}
           </dl>
         </div>
       </div>

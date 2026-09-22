@@ -1,28 +1,29 @@
 import { useEffect, useRef, useState } from 'react'
+import { Menu, Moon, Sun, X } from 'lucide-react'
 import { profile } from '../data/portfolio'
 
 type Theme = 'dark' | 'light'
 
-const THEME_TRANSITION_DURATION = 350
+const THEME_TRANSITION_DURATION = 200
 
 const navigationItems = [
+  { label: 'Work', href: '#projects' },
   { label: 'About', href: '#about' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Skills', href: '#skills' },
-  { label: 'Background', href: '#experience' },
   { label: 'Contact', href: '#contact' },
 ] as const
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const menuButton = useRef<HTMLButtonElement>(null)
+  const [activeSection, setActiveSection] = useState('')
   const themeTransitionTimeout = useRef<number | null>(null)
   const [theme, setTheme] = useState<Theme>(() => {
     try {
-      return window.localStorage.getItem('portfolio-theme') === 'light'
-        ? 'light'
-        : 'dark'
+      return window.localStorage.getItem('portfolio-theme') === 'dark'
+        ? 'dark'
+        : 'light'
     } catch {
-      return 'dark'
+      return 'light'
     }
   })
 
@@ -46,9 +47,20 @@ export function Navbar() {
   }
 
   useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) setActiveSection(entry.target.id)
+      }
+    }, { rootMargin: '-15% 0px -60% 0px' })
+    document.querySelectorAll('main section[id], .hero-section').forEach((section) => observer.observe(section))
+    return () => observer.disconnect()
+  }, [])
+
+  useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key === 'Escape') {
         closeMenu()
+        if (document.activeElement?.closest('#primary-navigation')) menuButton.current?.focus()
       }
     }
 
@@ -69,7 +81,7 @@ export function Navbar() {
 
     themeColor?.setAttribute(
       'content',
-      theme === 'dark' ? '#090b0f' : '#f5f7fb',
+      theme === 'dark' ? '#191d1b' : '#f6f5f1',
     )
 
     try {
@@ -98,7 +110,7 @@ export function Navbar() {
           aria-label={`${profile.name} home`}
           onClick={closeMenu}
         >
-          <span className="brand-name">{profile.name}</span>
+          {profile.name}
         </a>
 
         <nav
@@ -114,6 +126,7 @@ export function Navbar() {
                 <a
                   className="navigation-link"
                   href={item.href}
+                  aria-current={item.href === `#${activeSection}` ? 'location' : undefined}
                   onClick={closeMenu}
                 >
                   {item.label}
@@ -131,21 +144,15 @@ export function Navbar() {
           onClick={toggleTheme}
         >
           {theme === 'dark' ? (
-            <svg aria-hidden="true" viewBox="0 0 24 24">
-              <circle cx="12" cy="12" r="4" />
-              <path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42" />
-            </svg>
+            <Sun aria-hidden="true" size={20} />
           ) : (
-            <svg aria-hidden="true" viewBox="0 0 24 24">
-              <path d="M20.5 14.3A8.5 8.5 0 0 1 9.7 3.5 8.5 8.5 0 1 0 20.5 14.3Z" />
-            </svg>
+            <Moon aria-hidden="true" size={20} />
           )}
         </button>
 
         <button
-          className={`menu-toggle ${
-            isMenuOpen ? 'is-open' : ''
-          }`}
+          className="menu-toggle"
+          ref={menuButton}
           type="button"
           aria-expanded={isMenuOpen}
           aria-controls="primary-navigation"
@@ -156,9 +163,7 @@ export function Navbar() {
           }
           onClick={() => setIsMenuOpen((current) => !current)}
         >
-          <span className="menu-line" aria-hidden="true" />
-          <span className="menu-line" aria-hidden="true" />
-          <span className="menu-line" aria-hidden="true" />
+          {isMenuOpen ? <X aria-hidden="true" size={20} /> : <Menu aria-hidden="true" size={20} />}
         </button>
       </div>
     </header>

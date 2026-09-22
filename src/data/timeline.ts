@@ -1,10 +1,10 @@
-export type TimelineCategory =
+type TimelineCategory =
   | 'Experience'
   | 'Education'
   | 'Certification'
   | 'Award'
 
-export type TimelineItem = {
+type TimelineItem = {
   id: string
   category: TimelineCategory
   title: string

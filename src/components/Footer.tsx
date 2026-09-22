@@ -1,3 +1,4 @@
+import { ArrowUp } from 'lucide-react'
 import { profile } from '../data/portfolio'
 
 export function Footer() {
@@ -15,7 +16,7 @@ export function Footer() {
 
         <a className="back-to-top" href="#top">
           Back to top
-          <span aria-hidden="true">&uarr;</span>
+          <ArrowUp aria-hidden="true" size={18} />
         </a>
       </div>
     </footer>

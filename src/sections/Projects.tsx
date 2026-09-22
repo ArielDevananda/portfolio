@@ -31,23 +31,24 @@ export function Projects() {
       <div className="container">
         <header className="projects-header">
           <div>
-            <p className="eyebrow">Selected work</p>
+            <p className="eyebrow">01 / Selected work</p>
             <h2 className="section-title" id="projects-title">
-              Projects built from idea to deployment.
+              A closer look at my work.
             </h2>
           </div>
 
           <p className="section-description">
-            A selection of applications where I worked across interfaces,
-            backend services, data, and deployment.
+            From a financial assistant to a children's learning app.
+            A selection of my work in web, AI, and mobile development.
           </p>
         </header>
 
-        <div className="projects-grid" id="projects-grid">
-          {visibleProjects.map((project) => (
+        <div id="projects-grid">
+          {visibleProjects.map((project, index) => (
             <ProjectCard
               key={project.id}
               project={project}
+              index={index}
             />
           ))}
         </div>

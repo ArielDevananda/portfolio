@@ -6,9 +6,12 @@ import { Projects } from './sections/Projects'
 import { Experience } from './sections/Experience'
 import { Contact } from './sections/Contact'
 import { Footer } from './components/Footer'
+import { useSmoothScroll } from './hooks/useSmoothScroll'
 import './App.css'
 
 function App() {
+  useSmoothScroll()
+
   return (
     <div className="app" id="top">
       <a className="skip-link" href="#main-content">
@@ -17,10 +20,10 @@ function App() {
 
       <Navbar />
 
-      <main id="main-content">
+      <main id="main-content" tabIndex={-1}>
         <Hero />
-        <About />
         <Projects />
+        <About />
         <Skills />
         <Experience />
         <Contact />
